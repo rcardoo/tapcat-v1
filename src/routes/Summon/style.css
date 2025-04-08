@@ -359,16 +359,12 @@
   }
 
   .inventario-content {
-    /* background-color: red; */
-    padding-top: 50px;
-    width: 50%;
-    max-height: 80vh;
-    overflow-y: auto;
-    padding-right: 10px;
+    width: 100%;
+    max-height: none;
+    padding: 20px;
   }
 
   .inventario-menu {
-    /* background-color: blue; */
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -381,8 +377,7 @@
     flex-wrap: wrap;
     gap: 10px;
     justify-content: center;
-    /* background-color: #bd00ff; */
-    height: 100px;
+    height: auto;
   }
 
   .inventario-menu-quantidade {
@@ -396,5 +391,25 @@
     gap: 20px;
     justify-content: center;
     height: auto;
+  }
+
+  .menu {
+    flex-direction: column;
+    height: auto;
+    padding: 10px 0;
+  }
+
+  .menu-links,
+  .menu-pontos {
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .menu-links a,
+  .menu-pontos div {
+    width: 80%;
+    text-align: center;
   }
 }
