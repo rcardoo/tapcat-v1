@@ -1,0 +1,49 @@
+* {
+  margin: 0px;
+  padding: 0px;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.page-home {
+  background-color: #121419;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.container-home {
+  /* background-color: blue; */
+  width: 90%;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-catTap {
+  /* background-color: burlywood; */
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-catTap button {
+  background-color: #121419;
+  width: 300;
+}
+
+.btn-catTap button img {
+  width: 300px;
+}
+
+.btn-catTap button img:active {
+  width: 310px;
+}
