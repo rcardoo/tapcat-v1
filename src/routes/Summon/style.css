@@ -313,40 +313,88 @@
   border: 5px solid rgb(200, 200, 200);
 }
 
-@media (max-width: 877px) {
+@media (max-width: 800px) {
   .page-summon {
-    display: flex;
-    padding-top: 10%;
+    padding: 20px 10px;
+    height: auto;
   }
 
   .container-summon {
-    display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    height: auto;
+    margin-top: 50px;
   }
 
   .catch-content {
-    /* background-color: red; */
     width: 100%;
-    height: 90vh;
-
-    margin-top: 50px;
-    display: flex;
-    flex-direction: column;
+    height: auto;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+  }
 
-    gap: 40px;
+  .catch-content .carta {
+    margin: 0 auto;
   }
 
   .carta-descricao {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  .carta-descricao-nomes,
+  .carta-descricao-fav {
+    width: 100%;
     display: flex;
-    flex-direction: row;
-    width: 90%;
+    flex-direction: column;
+    align-items: center;
   }
 
   .inventario-content {
-    /* background-color: #e5f15b; */
+    /* background-color: red; */
+    padding-top: 50px;
+    width: 50%;
+    max-height: 80vh;
+    overflow-y: auto;
+    padding-right: 10px;
+  }
+
+  .inventario-menu {
+    /* background-color: blue; */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    height: auto;
+  }
+
+  .inventario-menu-btns {
     width: 100%;
-    height: 50%;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    /* background-color: #bd00ff; */
+    height: 100px;
+  }
+
+  .inventario-menu-quantidade {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .inventario-cartas {
+    margin: 0;
+    padding: 20px;
+    gap: 20px;
+    justify-content: center;
+    height: auto;
   }
 }

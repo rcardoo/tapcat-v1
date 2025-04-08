@@ -67,3 +67,23 @@
 .menu-pontos p {
   margin: 0px;
 }
+
+@media (max-width: 800px) {
+  .menu {
+    width: auto;
+    /* background-color: red; */
+    height: auto;
+  }
+
+  .menu-pontos {
+    /* background-color: blueviolet; */
+    display: flex;
+    flex-direction: column;
+    height: 120px;
+  }
+
+  .menu-links {
+    /* background-color: blue; */
+    width: auto;
+  }
+}

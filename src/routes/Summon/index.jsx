@@ -120,7 +120,7 @@ function Summon() {
   return (
     <div className='page-summon'>
       {/* Menu */}
-      <Menu cat={contadorCat} chave={contadorChave} />
+      <Menu className="menu" cat={contadorCat} chave={contadorChave} />
 
       {/* Alerta */}
       <div className='container-summon'>
