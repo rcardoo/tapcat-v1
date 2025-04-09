@@ -28,7 +28,7 @@ function Home() {
   }, [contadorChave]);
 
   const contadorClick = () => {
-    const encontrarChave = Math.floor(Math.random() * 10) + 1;
+    const encontrarChave = Math.floor(Math.random() * 75) + 1;
 
     setContadorCat((prev) => prev + 1);
     if (encontrarChave == 2) {
