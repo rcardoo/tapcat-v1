@@ -9,6 +9,12 @@ body {
   background-color: #121419;
 }
 
+.teste {
+  width: 100%;
+  /* position: fixed;
+  background-color: red; */
+}
+
 .nav {
   gap: 30%;
   align-items: center;
@@ -29,6 +35,7 @@ body {
 
 .menu-pontos {
   display: flex;
+  gap: 20px;
 }
 
 .cat-menu-pontos {
@@ -36,7 +43,7 @@ body {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  gap: 5px;
+  gap: 10px;
   width: auto;
 }
 
@@ -92,4 +99,5 @@ body {
   .chave-menu-pontos img {
     width: 25px;
   }
+
 }
