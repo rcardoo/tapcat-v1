@@ -15,8 +15,6 @@ import estrela from '../../assets/estrela.png'
 // Outras importações
 import axios from 'axios';
 import Descricao from '../../components/Descricao/Descricao';
-import Filtro from '../../components/Filtro/Filtro';
-import { data } from 'react-router-dom';
 
 function Summon() {
   const [salvarCarta, setSalvarCarta] = useState(() => {
@@ -34,14 +32,23 @@ function Summon() {
     return salvo ? JSON.parse(salvo) : 0
   });
 
+  const [contadorCoin, setContadorCoin] = useState(() => {
+    const salvo = localStorage.getItem('qtd-coin');
+    return salvo ? JSON.parse(salvo) : 0
+  });
+
   // Estados
   const [favorito, setFavorito] = useState(0)
   const [nomeAnime, setNomeAnime] = useState()
   const [nomePersonagem, setNomePersonagem] = useState()
   const [character, setCharacter] = useState();
   const [alerta, setAlerta] = useState(false)
+  const [alertaCoin, setAlertaCoin] = useState(false)
   const [ativaBtn, setAtivaBtn] = useState(false)
   const [mostrarImagem, setMostrarImagem] = useState(false)
+  const [capturando, setCapturando] = useState(false);
+  const [salvarInventarioDelay, setSalvarInventarioDelay] = useState(false);
+
 
   // Adicionando no Local Storage
 
@@ -54,18 +61,24 @@ function Summon() {
   }, [contadorChave]);
 
   useEffect(() => {
+    localStorage.setItem('qtd-coin', JSON.parse(contadorCoin));
+  }, [contadorCoin]);
+
+  useEffect(() => {
     localStorage.setItem('cartas', JSON.stringify(salvarCarta));
   }, [salvarCarta]);
 
   useEffect(() => {
     if (character) {
-      setMostrarImagem(true);
-      setAtivaBtn(false);
+      setCapturando(true);
+      setAtivaBtn(true)
+      setTimeout(() => {
+        setMostrarImagem(true);
+        setCapturando(false);
+        setAtivaBtn(false);
+      }, 200);
     }
   }, [character]);
-
-
-  // Função de chamada a API que retorna a carta e suas informações
 
   const teste = () => {
     if (contadorChave <= 0) {
@@ -74,7 +87,7 @@ function Summon() {
       return;
     }
 
-    setAtivaBtn(true); // desativa temporariamente para evitar múltiplos cliques
+    setAtivaBtn(true);
     setContadorChave((prev) => prev - 1);
 
     const idRandom = Math.floor(Math.random() * 1000) + 1;
@@ -85,6 +98,7 @@ function Summon() {
         const data = response.data.data;
 
         const novaCarta = {
+          id_personagem: data.mal_id,
           nome: data.name,
           nome_kanji: data.name_kanji,
           imagem_anime: data.images.jpg.image_url,
@@ -92,12 +106,25 @@ function Summon() {
           favorito: data.favorites
         };
 
-        setSalvarCarta((prevCartas) => [...prevCartas, novaCarta]);
+        setSalvarCarta((prevCartas) => {
+          const jaExiste = prevCartas.some(carta => carta.nome === novaCarta.nome);
+
+          if (jaExiste) {
+            setContadorCoin(contadorCoin + 1)
+            if (favorito >= 48000) {
+              setContadorCoin(contadorCoin + 5)
+            }
+            setAlertaCoin(true)
+            return prevCartas;
+          }
+
+          return [...prevCartas, novaCarta];
+        });
+
         setCharacter(data);
         setFavorito(novaCarta.favorito)
         setNomePersonagem(novaCarta.nome)
         setNomeAnime(novaCarta.nome_anime)
-        console.log(character)
 
       })
       .catch(err => {
@@ -123,32 +150,39 @@ function Summon() {
       return 'carta-rara';
     }
 
+    if (favorito >= 7630) {
+      return 'carta-incomun';
+    }
+
     return 'carta-comum';
   }
 
   return (
     <div className='page-summon'>
+      {alertaCoin && (
+        <Alerta
+          alerta={setAlertaCoin}
+          textoAlerta="Ops! Parece que você já tem uma carta dessa, pega umas moedinhas e engole o choro"
+        />
+      )}
       {alerta && <Alerta alerta={setAlerta} textoAlerta="Miau! Você não tem chave" />}
-      <Menu className='menu' cat={contadorCat} chave={contadorChave} />
+      <Menu className='menu' cat={contadorCat} chave={contadorChave} coin={contadorCoin} />
       <div className='container-summon'>
         <div className='container-catch'>
           {/* Renderização da imagem */}
-          {mostrarImagem && character ? (
-            <>
-              <img
-                style={{
-                  maxWidth: '250px',
-                  maxHeight: '388px'
-                }}
-                className={`carta ${getCartaRaridade(favorito)}`}
-                src={character.images.jpg.image_url} alt={character.name}
-              />
-            </>
-          ) : (
+          {capturando ? (
+            <div className="carta-loading">
+              <p>🎯 Capturando Poke... Ops!</p>
+            </div>
+          ) : mostrarImagem && character ? (
             <img
-              className='carta'
-              src={backcard} alt="carta virada"
+              style={{ maxWidth: '250px', maxHeight: '388px' }}
+              className={`carta ${getCartaRaridade(favorito)}`}
+              src={character.images.jpg.image_url}
+              alt={character.name}
             />
+          ) : (
+            <img className='carta' src={backcard} alt="carta virada" />
           )}
 
           <Descricao nPersonagem={nomePersonagem} nAnime={nomeAnime} estrela={estrela} fav={favorito} />

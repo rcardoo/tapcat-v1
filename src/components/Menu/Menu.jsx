@@ -3,12 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import key from '../../assets/key.png';
 import cat from '../../assets/cat.png';
+import catcoin from '../../assets/catcoin.png';
 import '../Menu/style.css'
 
 function Menu(props) {
   return (
-    <>
-      <ul class="nav justify-content-center">
+    <div className='teste'>
+      <ul className="nav justify-content-center">
 
         <div className="menu-links">
           <li class="nav-item">
@@ -36,10 +37,14 @@ function Menu(props) {
             <img src={key} alt="" />
             <p>{props.chave}</p>
           </li>
+          <li className="nav-item chave-menu-pontos">
+            <img src={catcoin} alt="" />
+            <p>{props.coin}</p>
+          </li>
         </div>
       </ul>
 
-    </>
+    </div>
   )
 }
 

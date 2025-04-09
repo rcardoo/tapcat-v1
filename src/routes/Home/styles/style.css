@@ -28,6 +28,7 @@
 
 .btn-catTap img {
   width: 300px;
+  background-color: #121419;
 }
 
 .btn-catTap button img:active {
@@ -36,10 +37,13 @@
 
 @media (max-width: 800px) {
   .btn-catTap img {
-    width: 150px;
+    width: 200px;
+    padding: 150px 10px;
   }
 
   .btn-catTap button img:active {
-    width: 170px;
+    width: 220px;
   }
+
+
 }
