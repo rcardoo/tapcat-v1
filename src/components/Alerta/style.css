@@ -1,3 +1,12 @@
+.alert {
+  display: flex;
+  justify-content: space-around;
+}
+
+.alert img {
+  width: 60px;
+}
+
 .button-alerta {
   border: 0px;
   margin-left: 15px;
@@ -6,16 +15,14 @@
   width: 30px;
   height: 30px;
 
-  color: black;
+  color: rgb(0, 0, 0);
   font-weight: bold;
 }
 
 @media (max-width: 800px) {
-  .alert {
-    width: 300px;
+  .alert img {
+    width: 60px;
   }
 
-  .alert img {
-    width: 20px;
-  }
+  /* .alert {} */
 }

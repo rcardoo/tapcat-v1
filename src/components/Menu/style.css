@@ -1,104 +1,95 @@
-.menu {
-  /* background-color: green; */
-  width: 100%;
-  height: 90px;
+* {
+  margin: 0px;
+  padding: 0px;
 
-  display: flex;
-  flex-direction: row;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 
+body {
+  background-color: #121419;
+}
+
+.nav {
+  gap: 30%;
   align-items: center;
-  justify-content: space-around;
+  height: auto;
+  display: flex;
+  margin-top: 10px;
+}
+
+.nav li p {
+  margin: 0px;
+  text-align: center;
+  font-weight: bold;
 }
 
 .menu-links {
-  /* background-color: blue; */
-  width: 40%;
-  height: 80px;
-
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
-
-.menu-links a {
-  /* background-color: yellow; */
-  width: 150px;
-  padding: 13px;
-
-  border-radius: 5px;
-
-  font-size: 20px;
-  text-align: center;
-  text-decoration: none;
-  color: #fff;
 }
 
 .menu-pontos {
-  /* background-color: blue; */
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-
-  width: 30%;
-  height: 80px;
 }
 
-.menu-pontos div {
-  /* background-color: red; */
-
-  width: 150px;
-  height: 50px;
-  padding: 10px;
-
-  border-radius: 5px;
-
+.cat-menu-pontos {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  gap: 5px;
+  width: auto;
+}
 
-  font-size: 20px;
+.cat-menu-pontos img {
+  width: 50px;
+}
+
+.cat-menu-pontos p {
+  margin: 0px;
+  font-weight: bold;
   color: #fff;
 }
 
-.menu-pontos div img {
-  width: 60px;
+.chave-menu-pontos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  gap: 5px;
+  width: auto;
 }
 
-.menu-pontos p {
+.chave-menu-pontos img {
+  width: 30px;
+}
+
+.chave-menu-pontos p {
   margin: 0px;
+  font-weight: bold;
+  color: #fff;
 }
 
 @media (max-width: 800px) {
-  .menu {
-    flex-direction: column;
-    height: auto;
-    padding: 15px 0;
-    gap: 20px;
-    align-items: center;
+  .nav {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0px;
   }
 
-  .menu-links {
-    width: 100%;
-    justify-content: center;
-    gap: 16px;
+  .nav li p {
+    font-size: 12px;
   }
 
   .menu-pontos {
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .menu-pontos>span:first-of-type {
-    margin-bottom: 12px;
-    /* Aumenta o espaço abaixo do "Summon" */
-    font-size: 18px;
-  }
-
-  .menu-pontos div {
     display: flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 16px;
+    width: auto;
+  }
+
+  .cat-menu-pontos img {
+    width: 25px;
+  }
+
+  .chave-menu-pontos img {
+    width: 25px;
   }
 }

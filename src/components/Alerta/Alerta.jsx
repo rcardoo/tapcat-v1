@@ -1,7 +1,9 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
+
+
 import angrycat from '../../assets/angrycat.png'
-import '../Alerta/style.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './style.css'
 
 function Alerta(props) {
 
@@ -12,11 +14,7 @@ function Alerta(props) {
 
   return (
     <div className="alert alert-primary" role="alert">
-      <img src={angrycat} alt=""
-        style={{
-          width: '60px',
-          marginRight: '20px'
-        }} />
+      <img src={angrycat} alt="" />
 
       {props.textoAlerta}
 

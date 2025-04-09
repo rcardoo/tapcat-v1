@@ -1,0 +1,63 @@
+.carta-descricao {
+  width: 70%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.nome-personagem {
+  color: #FFF;
+  font-weight: bold;
+}
+
+.nome-anime {
+  color: #9a9999;
+}
+
+.carta-descricao-fav {
+  width: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+}
+
+.carta-descricao-fav img {
+  width: 70px;
+}
+
+.carta-descricao-fav p {
+  color: #0d6efd;
+  margin: 0px;
+}
+
+@media (max-width: 800px) {
+  .carta-descricao-fav img {
+    width: 40px;
+  }
+
+  .carta-descricao {
+    width: auto;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column-reverse;
+    gap: 10px;
+  }
+
+
+
+  .nome-personagem {
+    font-size: 15px;
+    text-align: center;
+  }
+
+  .nome-anime {
+    font-size: 15px;
+    text-align: center;
+  }
+}

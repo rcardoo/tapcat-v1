@@ -1,23 +1,24 @@
+import React from 'react'
+import Menu from '../../components/Menu/Menu';
+import '../Summon/styles/style.css'
 //  Importação React
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useEffect } from 'react';
 
 // Importação Componentes
-import Menu from '../../components/Menu/Menu'
 import Alerta from '../../components/Alerta/Alerta';
-import backcard from '../../assets/backcard.png'
+import backcard from '../../assets/backcard.png';
 
 // Importação de estilos
-import '../Summon/style.css'
 import estrela from '../../assets/estrela.png'
 
 // Outras importações
 import axios from 'axios';
-
+import Descricao from '../../components/Descricao/Descricao';
+import Filtro from '../../components/Filtro/Filtro';
+import { data } from 'react-router-dom';
 
 function Summon() {
-
-  // Pegando o que já está salvo no local Storage
   const [salvarCarta, setSalvarCarta] = useState(() => {
     const salvo = localStorage.getItem('cartas');
     return salvo ? JSON.parse(salvo) : [];
@@ -56,15 +57,13 @@ function Summon() {
     localStorage.setItem('cartas', JSON.stringify(salvarCarta));
   }, [salvarCarta]);
 
-
-  // Quando o character for definido, mostra a imagem e ativa o botão
-
   useEffect(() => {
     if (character) {
       setMostrarImagem(true);
       setAtivaBtn(false);
     }
   }, [character]);
+
 
   // Função de chamada a API que retorna a carta e suas informações
 
@@ -98,6 +97,7 @@ function Summon() {
         setFavorito(novaCarta.favorito)
         setNomePersonagem(novaCarta.nome)
         setNomeAnime(novaCarta.nome_anime)
+        console.log(character)
 
       })
       .catch(err => {
@@ -111,23 +111,27 @@ function Summon() {
   };
 
   function getCartaRaridade(favorito) {
-    if (favorito > 300) return 'carta-lendaria';
-    if (favorito > 200) return 'carta-epica';
-    if (favorito > 100) return 'carta-rara';
+    if (favorito >= 48000) {
+      return 'carta-lendaria';
+    }
+
+    if (favorito >= 22370) {
+      return 'carta-epica';
+    }
+
+    if (favorito >= 11246) {
+      return 'carta-rara';
+    }
+
     return 'carta-comum';
   }
 
   return (
     <div className='page-summon'>
-      {/* Menu */}
-      <Menu className="menu" cat={contadorCat} chave={contadorChave} />
-
-      {/* Alerta */}
+      {alerta && <Alerta alerta={setAlerta} textoAlerta="Miau! Você não tem chave" />}
+      <Menu className='menu' cat={contadorCat} chave={contadorChave} />
       <div className='container-summon'>
-        {alerta && <Alerta alerta={setAlerta} textoAlerta="Miau! Você não tem chave" />}
-
-        <div className='catch-content'>
-
+        <div className='container-catch'>
           {/* Renderização da imagem */}
           {mostrarImagem && character ? (
             <>
@@ -137,9 +141,7 @@ function Summon() {
                   maxHeight: '388px'
                 }}
                 className={`carta ${getCartaRaridade(favorito)}`}
-                src={
-                  character.images.jpg.image_url
-                } alt={character.name}
+                src={character.images.jpg.image_url} alt={character.name}
               />
             </>
           ) : (
@@ -149,53 +151,18 @@ function Summon() {
             />
           )}
 
-          {/* Area de Descrição da carta */}
-          <div className='carta-descricao'>
+          <Descricao nPersonagem={nomePersonagem} nAnime={nomeAnime} estrela={estrela} fav={favorito} />
 
-            <div className='carta-descricao-nomes'>
-              <p className='nome-personagem'>{nomePersonagem || '...'}</p>
-              <p className='nome-anime'>{nomeAnime || '...'}</p>
-            </div>
-
-            <div className='carta-descricao-fav'>
-              <img
-                style={{ width: '60px' }}
-                src={estrela} alt=""
-              />
-              <p>{favorito || '...'}</p>
-            </div>
-
-          </div>
-          <button disabled={ativaBtn} onClick={teste}>Catch</button>
+          <button className='btn-catch' disabled={ativaBtn} onClick={teste}>Catch</button>
         </div>
-
         {/* Iventario */}
         <div className='inventario-content'>
-          <div className='inventario-menu'>
-
-            <div className='inventario-menu-btns'>
-              <button id='inventario-menu-btn-1'>Lendário</button>
-              <button id='inventario-menu-btn-2'>Épico</button>
-              <button id='inventario-menu-btn-3'>Raro</button>
-              <button id='inventario-menu-btn-4'>Comum</button>
-            </div>
-
-            <div className='inventario-menu-quantidade'>
-              <img style={{ width: '30px', rotate: '-10deg' }} src={backcard} alt="" />
-              <p>5</p>
-            </div>
-
-          </div>
           <div className='inventario-cartas'>
-            {salvarCarta.map((carta, index) => (
+            {[...salvarCarta].reverse().map((carta, index) => (
               <img
                 key={index}
                 src={carta.imagem_anime}
                 alt={carta.nome}
-                style={{
-                  width: '250px',
-                  height: '388px',
-                }}
                 className={`carta-inventario-raridade ${getCartaRaridade(carta.favorito)}`}
               />
             ))
