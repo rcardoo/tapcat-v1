@@ -1,18 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import Menu from '../../components/Menu/Menu';
-import '../Summon/styles/style.css'
-//  Importação React
-import { useState } from 'react'
-import { useEffect } from 'react';
-
-// Importação Componentes
+import '../Summon/styles/style.css';
 import Alerta from '../../components/Alerta/Alerta';
 import backcard from '../../assets/backcard.png';
-
-// Importação de estilos
-import estrela from '../../assets/estrela.png'
-
-// Outras importações
+import estrela from '../../assets/estrela.png';
 import axios from 'axios';
 import Descricao from '../../components/Descricao/Descricao';
 
@@ -24,44 +15,40 @@ function Summon() {
 
   const [contadorCat, setContadorCat] = useState(() => {
     const salvo = localStorage.getItem('qtd-cat');
-    return salvo ? JSON.parse(salvo) : 0
+    return salvo ? parseInt(atob(salvo)) : 0;
   });
 
   const [contadorChave, setContadorChave] = useState(() => {
     const salvo = localStorage.getItem('qtd-chave');
-    return salvo ? JSON.parse(salvo) : 0
+    return salvo ? parseInt(atob(salvo)) : 0;
   });
 
   const [contadorCoin, setContadorCoin] = useState(() => {
     const salvo = localStorage.getItem('qtd-coin');
-    return salvo ? JSON.parse(salvo) : 0
+    return salvo ? parseInt(atob(salvo)) : 0;
   });
 
-  // Estados
-  const [favorito, setFavorito] = useState(0)
-  const [nomeAnime, setNomeAnime] = useState()
-  const [nomePersonagem, setNomePersonagem] = useState()
+  const [favorito, setFavorito] = useState(0);
+  const [nomeAnime, setNomeAnime] = useState();
+  const [nomePersonagem, setNomePersonagem] = useState();
   const [character, setCharacter] = useState();
-  const [alerta, setAlerta] = useState(false)
-  const [alertaCoin, setAlertaCoin] = useState(false)
-  const [ativaBtn, setAtivaBtn] = useState(false)
-  const [mostrarImagem, setMostrarImagem] = useState(false)
+  const [alerta, setAlerta] = useState(false);
+  const [alertaCoin, setAlertaCoin] = useState(false);
+  const [ativaBtn, setAtivaBtn] = useState(false);
+  const [mostrarImagem, setMostrarImagem] = useState(false);
   const [capturando, setCapturando] = useState(false);
-  const [salvarInventarioDelay, setSalvarInventarioDelay] = useState(false);
 
-
-  // Adicionando no Local Storage
-
+  // Salvando dados codificados em Base64
   useEffect(() => {
-    localStorage.setItem('qtd-cat', JSON.parse(contadorCat));
+    localStorage.setItem('qtd-cat', btoa(contadorCat.toString()));
   }, [contadorCat]);
 
   useEffect(() => {
-    localStorage.setItem('qtd-chave', JSON.parse(contadorChave));
+    localStorage.setItem('qtd-chave', btoa(contadorChave.toString()));
   }, [contadorChave]);
 
   useEffect(() => {
-    localStorage.setItem('qtd-coin', JSON.parse(contadorCoin));
+    localStorage.setItem('qtd-coin', btoa(contadorCoin.toString()));
   }, [contadorCoin]);
 
   useEffect(() => {
@@ -71,7 +58,7 @@ function Summon() {
   useEffect(() => {
     if (character) {
       setCapturando(true);
-      setAtivaBtn(true)
+      setAtivaBtn(true);
       setTimeout(() => {
         setMostrarImagem(true);
         setCapturando(false);
@@ -110,11 +97,9 @@ function Summon() {
           const jaExiste = prevCartas.some(carta => carta.nome === novaCarta.nome);
 
           if (jaExiste) {
-            setContadorCoin(contadorCoin + 1)
-            if (favorito >= 48000) {
-              setContadorCoin(contadorCoin + 5)
-            }
-            setAlertaCoin(true)
+            const bonus = novaCarta.favorito >= 48000 ? 5 : 1;
+            setContadorCoin((prev) => prev + bonus);
+            setAlertaCoin(true);
             return prevCartas;
           }
 
@@ -122,38 +107,24 @@ function Summon() {
         });
 
         setCharacter(data);
-        setFavorito(novaCarta.favorito)
-        setNomePersonagem(novaCarta.nome)
-        setNomeAnime(novaCarta.nome_anime)
-
+        setFavorito(novaCarta.favorito);
+        setNomePersonagem(novaCarta.nome);
+        setNomeAnime(novaCarta.nome_anime);
       })
       .catch(err => {
         console.error('Erro:', err);
         setAlerta(true);
       })
       .finally(() => {
-        // setAlerta(true);
         setAtivaBtn(false);
       });
   };
 
   function getCartaRaridade(favorito) {
-    if (favorito >= 48000) {
-      return 'carta-lendaria';
-    }
-
-    if (favorito >= 22370) {
-      return 'carta-epica';
-    }
-
-    if (favorito >= 11246) {
-      return 'carta-rara';
-    }
-
-    if (favorito >= 7630) {
-      return 'carta-incomun';
-    }
-
+    if (favorito >= 48000) return 'carta-lendaria';
+    if (favorito >= 22370) return 'carta-epica';
+    if (favorito >= 11246) return 'carta-rara';
+    if (favorito >= 7630) return 'carta-incomun';
     return 'carta-comum';
   }
 
@@ -169,7 +140,6 @@ function Summon() {
       <Menu className='menu' cat={contadorCat} chave={contadorChave} coin={contadorCoin} />
       <div className='container-summon'>
         <div className='container-catch'>
-          {/* Renderização da imagem */}
           {capturando ? (
             <div className="carta-loading">
               <p>🎯 Capturando Poke... Ops!</p>
@@ -186,10 +156,9 @@ function Summon() {
           )}
 
           <Descricao nPersonagem={nomePersonagem} nAnime={nomeAnime} estrela={estrela} fav={favorito} />
-
           <button className='btn-catch' disabled={ativaBtn} onClick={teste}>Catch</button>
         </div>
-        {/* Iventario */}
+
         <div className='inventario-content'>
           <div className='inventario-cartas'>
             {[...salvarCarta].reverse().map((carta, index) => (
@@ -199,13 +168,12 @@ function Summon() {
                 alt={carta.nome}
                 className={`carta-inventario-raridade ${getCartaRaridade(carta.favorito)}`}
               />
-            ))
-            }
+            ))}
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Summon
+export default Summon;
