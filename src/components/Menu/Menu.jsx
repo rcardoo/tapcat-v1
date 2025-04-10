@@ -8,7 +8,7 @@ import '../Menu/style.css'
 
 function Menu(props) {
   return (
-    <div className='teste'>
+    <div className='menu-content'>
       <ul className="nav justify-content-center">
 
         <div className="menu-links">
@@ -24,6 +24,13 @@ function Menu(props) {
               class="nav-link"
               to={"/summon"}>
               <p>Summon</p>
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link
+              class="nav-link"
+              to={"/loja"}>
+              <p>Loja</p>
             </Link>
           </li>
         </div>
@@ -42,6 +49,7 @@ function Menu(props) {
             <p>{props.coin}</p>
           </li>
         </div>
+
       </ul>
 
     </div>

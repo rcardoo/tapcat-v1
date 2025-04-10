@@ -4,6 +4,7 @@ import '../Summon/styles/style.css';
 import Alerta from '../../components/Alerta/Alerta';
 import backcard from '../../assets/backcard.png';
 import estrela from '../../assets/estrela.png';
+
 import axios from 'axios';
 import Descricao from '../../components/Descricao/Descricao';
 
@@ -90,7 +91,8 @@ function Summon() {
           nome_kanji: data.name_kanji,
           imagem_anime: data.images.jpg.image_url,
           nome_anime: data.anime[0]?.anime?.title || 'Anime desconhecido',
-          favorito: data.favorites
+          favorito: data.favorites,
+          url: data.url
         };
 
         setSalvarCarta((prevCartas) => {
@@ -162,12 +164,28 @@ function Summon() {
         <div className='inventario-content'>
           <div className='inventario-cartas'>
             {[...salvarCarta].reverse().map((carta, index) => (
-              <img
-                key={index}
-                src={carta.imagem_anime}
-                alt={carta.nome}
-                className={`carta-inventario-raridade ${getCartaRaridade(carta.favorito)}`}
-              />
+              <div key={index}>
+                <img
+                  src={carta.imagem_anime}
+                  alt={carta.nome}
+                  className={`carta-inventario-raridade ${getCartaRaridade(carta.favorito)}`}
+                />
+                <div className='nome-link-carta'>
+                  <a
+                    href={carta.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-nome-carta"
+                    style={{
+                      color: "#0d6efd",
+                      textDecorationLine: "underline",
+                      textUnderlineOffset: "4px"
+                    }}
+                  >
+                    <p>{carta.nome}</p>
+                  </a>
+                </div>
+              </div>
             ))}
           </div>
         </div>

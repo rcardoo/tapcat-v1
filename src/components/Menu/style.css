@@ -6,13 +6,11 @@
 }
 
 body {
-  background-color: #121419;
+  background-color: #121212;
 }
 
-.teste {
+.menu-content {
   width: 100%;
-  /* position: fixed;
-  background-color: red; */
 }
 
 .nav {

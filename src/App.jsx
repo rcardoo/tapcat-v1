@@ -1,11 +1,8 @@
-import {
-  BrowserRouter,
-  Routes,
-  Route
-} from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Home from './routes/Home';
 import Summon from './routes/Summon';
+import Loja from './routes/Loja';
 
 function App() {
 
@@ -14,6 +11,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/summon' element={<Summon />} />
+        <Route path='/loja' element={<Loja />} />
       </Routes>
     </BrowserRouter>
   )

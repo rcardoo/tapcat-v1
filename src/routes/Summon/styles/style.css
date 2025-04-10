@@ -1,5 +1,5 @@
 .page-summon {
-  background-color: #121419;
+  background-color: #121212;
   height: 100vh;
 }
 
@@ -41,10 +41,25 @@
   height: 700px;
 }
 
+.inventario-cartas div p {
+  max-width: 100px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .inventario-cartas img {
   width: 250px;
   height: 388px;
   border-radius: 5px;
+}
+
+.nome-link-carta {
+  display: flex;
+  flex-direction: row;
+  max-width: 200px;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .btn-catch {
@@ -110,6 +125,7 @@
   border: 1px solid #0d6efd;
   /* creates padding around scroll thumb */
 }
+
 
 .carta-epica {
   border: 5px solid rgb(165, 71, 191);
