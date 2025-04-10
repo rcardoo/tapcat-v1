@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Menu from '../../components/Menu/Menu';
 import Alerta from '../../components/Alerta/Alerta';
 
+import zoro from '../../assets/zoro.png';
+import zeroTwo from '../../assets/zeroTwo.png';
 import cat from '../../assets/cat.png'
 import './styles/style.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -21,6 +23,7 @@ function encodeBase64(value) {
 function Home() {
   const [alerta, setAlerta] = useState(false)
   const [alertaBonus, setAlertaBonus] = useState(false)
+  const [catImg, setCatImg] = useState(cat);
 
   const [contadorCat, setContadorCat] = useState(() => {
     const salvo = localStorage.getItem('qtd-cat');
@@ -89,10 +92,17 @@ function Home() {
               border: 0,
               display: 'flex',
               alignItems: 'center',
-              backgroundColor: '#121419',
+              backgroundColor: 'transparent',
             }}
           >
-            <img src={cat} alt="cat" />
+            <img
+              src={
+                localStorage.getItem('clickerEquipado') === 'zeroTwo' ? zeroTwo :
+                  localStorage.getItem('clickerEquipado') === 'zoro' ? zoro :
+                    cat
+              }
+              alt="clicker"
+            />
           </button>
         </div>
       </div>
