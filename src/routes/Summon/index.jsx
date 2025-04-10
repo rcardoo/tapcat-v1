@@ -68,7 +68,7 @@ function Summon() {
     }
   }, [character]);
 
-  const teste = () => {
+  const habilitador = () => {
     if (contadorChave <= 0) {
       setAtivaBtn(true);
       setAlerta(true);
@@ -78,7 +78,7 @@ function Summon() {
     setAtivaBtn(true);
     setContadorChave((prev) => prev - 1);
 
-    const idRandom = Math.floor(Math.random() * 1000) + 1;
+    const idRandom = Math.floor(Math.random() * 10000) + 1;
     const ENDPOINT = `https://api.jikan.moe/v4/characters/${idRandom}/full`;
 
     axios.get(ENDPOINT)
@@ -158,7 +158,7 @@ function Summon() {
           )}
 
           <Descricao nPersonagem={nomePersonagem} nAnime={nomeAnime} estrela={estrela} fav={favorito} />
-          <button className='btn-catch' disabled={ativaBtn} onClick={teste}>Catch</button>
+          <button className='btn-catch' disabled={ativaBtn} onClick={habilitador}>Catch</button>
         </div>
 
         <div className='inventario-content'>
