@@ -5,6 +5,7 @@ import Alerta from '../../components/Alerta/Alerta';
 import backcard from '../../assets/backcard.png';
 import estrela from '../../assets/estrela.png';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import Descricao from '../../components/Descricao/Descricao';
 
@@ -39,7 +40,8 @@ function Summon() {
   const [mostrarImagem, setMostrarImagem] = useState(false);
   const [capturando, setCapturando] = useState(false);
 
-  // Salvando dados codificados em Base64
+  const [filtroRaridade, setFiltroRaridade] = useState("todos");
+
   useEffect(() => {
     localStorage.setItem('qtd-cat', btoa(contadorCat.toString()));
   }, [contadorCat]);
@@ -130,6 +132,11 @@ function Summon() {
     return 'carta-comum';
   }
 
+  const cartasFiltradas = [...salvarCarta].reverse().filter((carta) => {
+    const raridade = getCartaRaridade(carta.favorito);
+    return filtroRaridade === "todos" || raridade === filtroRaridade;
+  });
+
   return (
     <div className='page-summon'>
       {alertaCoin && (
@@ -140,6 +147,7 @@ function Summon() {
       )}
       {alerta && <Alerta alerta={setAlerta} textoAlerta="Miau! Você não tem chave" />}
       <Menu className='menu' cat={contadorCat} chave={contadorChave} coin={contadorCoin} />
+
       <div className='container-summon'>
         <div className='container-catch'>
           {capturando ? (
@@ -162,8 +170,34 @@ function Summon() {
         </div>
 
         <div className='inventario-content'>
+          <div className="filtro-raridade">
+            {[
+              { label: "Todos", value: "todos" },
+              { label: "Lendário", value: "carta-lendaria" },
+              { label: "Épico", value: "carta-epica" },
+              { label: "Raro", value: "carta-rara" },
+              { label: "Incomum", value: "carta-incomun" },
+              { label: "Normal", value: "carta-comum" },
+            ].map((item, idx) => (
+              <div className="form-check" key={idx}>
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name="radioDefault"
+                  id={`radio-${item.value}`}
+                  value={item.value}
+                  onChange={(e) => setFiltroRaridade(e.target.value)}
+                  checked={filtroRaridade === item.value}
+                />
+                <label className="form-check-label" htmlFor={`radio-${item.value}`}>
+                  {item.label}
+                </label>
+              </div>
+            ))}
+          </div>
+
           <div className='inventario-cartas'>
-            {[...salvarCarta].reverse().map((carta, index) => (
+            {cartasFiltradas.map((carta, index) => (
               <div key={index}>
                 <img
                   src={carta.imagem_anime}

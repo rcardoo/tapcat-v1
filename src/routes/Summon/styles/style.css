@@ -108,22 +108,17 @@
 
 *::-webkit-scrollbar {
   width: 9px;
-  /* width of the entire scrollbar */
 }
 
 *::-webkit-scrollbar-track {
   background: #121419;
-  /* color of the tracking area */
 }
 
 *::-webkit-scrollbar-thumb {
   background: #121419;
-  /* color of the scroll thumb */
   border-radius: 20px;
   height: 100px;
-  /* roundness of the scroll thumb */
   border: 1px solid #0d6efd;
-  /* creates padding around scroll thumb */
 }
 
 
@@ -135,6 +130,15 @@
     0 0 40px #ff01f2;
 
   animation: colors-epica 2s ease infinite;
+}
+
+.filtro-raridade {
+  /* background-color: red; */
+  color: #fff;
+  display: flex;
+  gap: 10px;
+  overflow: auto;
+  margin: 10px;
 }
 
 @keyframes colors-epica {
@@ -249,4 +253,9 @@
     height: 208px;
     font-size: 10px;
   }
+
+  .filtro-raridade {
+    scrollbar-width: none
+  }
+
 }
