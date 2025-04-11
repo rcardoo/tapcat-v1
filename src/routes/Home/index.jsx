@@ -68,10 +68,19 @@ function Home() {
     const encontrarChave = Math.floor(Math.random() * 80) + 1;
 
     setContadorCat((prev) => prev + 1);
-    if (contadorCat === 10000 || contadorCat === 20000) {
+    if (contadorCat == 10000 || contadorCat == 20000 || contadorCat == 30000 || contadorCat == 40000 ||
+      contadorCat == 50000 || contadorCat == 60000 || contadorCat == 70000 || contadorCat == 80000 ||
+      contadorCat == 90000) {
       setContadorChave((prev) => prev + 15)
+      setContadorCoin((prev) => prev + 1)
       setAlertaBonus(true)
     }
+    if (contadorCat == 100000) {
+      setContadorChave((prev) => prev + 100)
+      setContadorCoin((prev) => prev + 100)
+      setAlertaBonus(true)
+    }
+
     if (encontrarChave === 2) {
       setContadorChave((prev) => prev + 1)
       alert("⏰ Apenas evitando que você use métodos indevidos de click, espertinho >_<")
@@ -82,7 +91,7 @@ function Home() {
   return (
     <div className='page-home'>
       {alertaBonus && <Alerta alerta={setAlertaBonus}
-        textoAlerta="Você tá no foco! Pega umas chaves de presente 🎁" />}
+        textoAlerta="Você tá no foco! Pega um presente 🎁" />}
       {alerta && <Alerta alerta={setAlerta}
         textoAlerta="Que legal! Você encontrou uma chave. Pode gastar ela para conseguir um personagem" />}
       <Menu cat={contadorCat} chave={contadorChave} coin={contadorCoin} />
