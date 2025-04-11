@@ -29,8 +29,15 @@ function Menu(props) {
           <li class="nav-item">
             <Link
               class="nav-link"
-              to={"/loja"}>
-              <p>Loja</p>
+              to={"/shop"}>
+              <p>Shop</p>
+            </Link>
+          </li>
+          <li class="nav-item">
+            <Link
+              class="nav-link"
+              to={"/info"}>
+              <p>Info</p>
             </Link>
           </li>
         </div>

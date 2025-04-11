@@ -22,23 +22,105 @@
   background-color: transparent;
 }
 
-.btn-catTap img {
-  width: 300px;
+/* Estilos bos clickers */
+
+.btn-catTap img.cat {
+  width: 270px;
+  height: auto;
 }
 
-.btn-catTap button img:active {
-  width: 320px;
+.btn-catTap button img.cat:active {
+  width: 290px;
+}
+
+.btn-catTap img.clicker-zeroTwo {
+  width: 250px;
+  height: auto;
+}
+
+.btn-catTap img.clicker-zeroTwo:active {
+  width: 265px;
+  height: auto;
+}
+
+.btn-catTap img.clicker-zoro {
+  width: 600px;
+  height: auto;
+}
+
+.btn-catTap img.clicker-zoro:active {
+  width: 620px;
+  height: auto;
+}
+
+.btn-catTap img.clicker-esdeath {
+  width: 280px;
+  height: auto;
+}
+
+.btn-catTap img.clicker-esdeath:active {
+  width: 295px;
+  height: auto;
+}
+
+.btn-catTap img.clicker-king {
+  width: 450px;
+  height: auto;
+}
+
+.btn-catTap img.clicker-king:active {
+  width: 500px;
+  height: auto;
 }
 
 @media (max-width: 800px) {
-  .btn-catTap img {
+  .btn-catTap img.cat {
     width: 200px;
     padding: 150px 10px;
   }
 
-  .btn-catTap button img:active {
-    width: 240px;
+  .btn-catTap button img.cat:active {
+    width: 230px;
   }
 
+  .btn-catTap img.clicker-zeroTwo {
+    width: 170px;
+    height: auto;
+  }
+
+  .btn-catTap img.clicker-zeroTwo:active {
+    width: 185px;
+    height: auto;
+  }
+
+  .btn-catTap img.clicker-zoro {
+    width: 280px;
+    height: auto
+  }
+
+  .btn-catTap img.clicker-zoro:active {
+    width: 295px;
+    height: auto;
+  }
+
+  .btn-catTap img.clicker-esdeath {
+    width: 200px;
+    height: auto;
+  }
+
+  .btn-catTap img.clicker-esdeath:active {
+    width: 215px;
+    height: auto;
+  }
+
+  .btn-catTap img.clicker-king {
+    width: 300px;
+    height: auto;
+  }
+
+  .btn-catTap img.clicker-king:active {
+    width: 315px;
+    height: auto;
+  }
 
 }

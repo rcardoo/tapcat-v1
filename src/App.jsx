@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './routes/Home';
 import Summon from './routes/Summon';
 import Loja from './routes/Loja';
+import Info from './routes/Info';
 
 function App() {
 
@@ -11,7 +12,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/summon' element={<Summon />} />
-        <Route path='/loja' element={<Loja />} />
+        <Route path='/shop' element={<Loja />} />
+        <Route path='/info' element={<Info />} />
       </Routes>
     </BrowserRouter>
   )

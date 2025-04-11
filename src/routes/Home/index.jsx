@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Menu from '../../components/Menu/Menu';
 import Alerta from '../../components/Alerta/Alerta';
 
+import king from '../../assets/imgsLoja/king-nanatsu.png';
+import esdeath from '../../assets/imgsLoja/esdeath.png';
 import zoro from '../../assets/zoro.png';
 import zeroTwo from '../../assets/zeroTwo.png';
 import cat from '../../assets/cat.png'
@@ -99,8 +101,14 @@ function Home() {
               src={
                 localStorage.getItem('clickerEquipado') === 'zeroTwo' ? zeroTwo :
                   localStorage.getItem('clickerEquipado') === 'zoro' ? zoro :
-                    cat
+                    localStorage.getItem('clickerEquipado') === 'esdeath' ? esdeath :
+                      localStorage.getItem('clickerEquipado') === 'king' ? king :
+                        cat
               }
+              className={localStorage.getItem('clickerEquipado') === 'zeroTwo' ? 'clicker-zeroTwo' :
+                localStorage.getItem('clickerEquipado') === 'zoro' ? 'clicker-zoro' :
+                  localStorage.getItem('clickerEquipado') === 'esdeath' ? 'clicker-esdeath' :
+                    localStorage.getItem('clickerEquipado') === 'king' ? 'clicker-king' : 'cat'}
               alt="clicker"
             />
           </button>
