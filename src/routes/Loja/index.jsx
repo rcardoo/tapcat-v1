@@ -1,10 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Menu from '../../components/Menu/Menu';
 import catcoin from '../../assets/catcoin.png';
-import key from '../../assets/key.png';
-import zeroTwo from '../../assets/zeroTwo.png';
-import cat from '../../assets/cat.png';
-import zoro from '../../assets/zoro.png';
+
 import '../Loja/styles/style.css';
 import Chaves from './Components/Chaves/Chaves';
 import Clickers from './Components/Clickers/Clickers';
@@ -26,7 +23,7 @@ function Loja() {
 
   const [compras, setCompras] = useState(() => {
     const salvo = localStorage.getItem('clickersComprados');
-    return salvo ? JSON.parse(salvo) : { zeroTwo: false, zoro: false };
+    return salvo ? JSON.parse(salvo) : { zeroTwo: false, zoro: false, esdeath: false };
   });
 
   const [contadorCat, setContadorCat] = useState(() => {
